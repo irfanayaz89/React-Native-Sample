@@ -1,0 +1,1 @@
+export * from '../../modules/movies/actions/moviesActionTypes';
