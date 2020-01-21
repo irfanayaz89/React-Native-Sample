@@ -39,4 +39,11 @@ function mapStateToProps(state) {
     return { fetchingDetail, movieData, error };
 }
 
-export default connect(mapStateToProps, { getMovieDetail })(MovieDetailScreen);
+function mapDispatchToProps(dispatch) {
+
+    return {
+        getMovieDetail: (movieId) => dispatch(getMovieDetail(movieId))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieDetailScreen);

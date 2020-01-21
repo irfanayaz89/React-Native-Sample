@@ -15,7 +15,7 @@ class MoviesScreen extends Component {
         this.props.getPopularMovies();
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate() {
 
         const { fetchingMovies, moviesList, error } = this.props;
         console.log("FETCHING MOVIES:: " + fetchingMovies);
@@ -39,4 +39,11 @@ function mapStateToProps(state) {
     return { fetchingMovies, moviesList, error };
 }
 
-export default connect(mapStateToProps, { getPopularMovies })(MoviesScreen);
+function mapDispatchToProps(dispatch) {
+
+    return {
+        getPopularMovies: () => dispatch(getPopularMovies())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesScreen);
