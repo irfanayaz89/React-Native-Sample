@@ -6,9 +6,12 @@ import {
 
 import { connect } from "react-redux";
 
-import { getPopularMovies } from '../actions';
-import MovieItem from '../views/movieItem';
+import { getPopularMovies } from '../../actions';
+import MovieItem from '../../components/MovieItem/movieItem';
 import { FlatList } from 'react-native-gesture-handler';
+
+import AppStyles from '../../../../theme/styles'
+import Styles from './style'
 
 class MoviesScreen extends Component {
 
@@ -36,8 +39,8 @@ class MoviesScreen extends Component {
     render() {
 
         return (
-            <View style={{ flex: 1, justifyContent: 'center', backgroundColor: '#08090B', padding: 5 }}>
-                <View style={{ flexDirection: 'row', width: '100%', backgroundColor: '#454545', borderRadius: 10, padding: 10 }} >
+            <View style={[Styles.container]}>
+                <View style={[Styles.titleBar]} >
                     <Text style={{ color: '#1F64E1', fontSize: 20, fontWeight: 'bold' }} >Tin</Text>
                     <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>Movies</Text>
                 </View>
@@ -64,6 +67,7 @@ class MoviesScreen extends Component {
         )
     }
 }
+
 
 function mapStateToProps(state) {
 

@@ -3,20 +3,21 @@ import {
     View,
     Text,
     Image,
+    ActivityIndicator
 } from 'react-native';
 import Star from 'react-native-star-view';
 
 import { connect } from "react-redux";
 
-import { getMovieDetail } from '../actions';
+import { getMovieDetail } from '../../actions';
 
-import { IMAGE_BASE_URL } from '../../../shared/constants';
-import Button from '../views/MyButton';
+import { IMAGE_BASE_URL } from '../../../../shared/constants';
+import Button from '../../components/TinMoviesButton';
 
-import PairView from '../views/PairView';
+import PairView from '../../components/PairView/PairView';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import MoviesStyles from "../styles";
+import Styles from "./styles";
 
 class MovieDetailScreen extends Component {
 
@@ -35,33 +36,41 @@ class MovieDetailScreen extends Component {
 
     render() {
 
-        let imgUrl = {
-            uri: IMAGE_BASE_URL + this.props.movieData.poster_path
+        if (this.props.fetchingDetail) {
+            return this.showLoadingView();
         }
 
+        let imgUrl = this.props.movieData.poster_path
+        // if (!this.props.movieData.poster_path.includes("http")) {
+
+        imgUrl = {
+            uri: IMAGE_BASE_URL + this.props.movieData.poster_path
+        }
+        // }
+
         let rating = (this.props.movieData.vote_average / 10) * 5
-
+        const { movieData } = this.props
         return (
-            <View style={MoviesStyles.movieDetailContainer}>
+            <View style={Styles.movieDetailContainer}>
 
-                <Image style={MoviesStyles.image} source={imgUrl} resizeMode='cover'></Image>
+                <Image style={Styles.image} source={imgUrl} resizeMode='cover'></Image>
 
                 <ScrollView>
-                    <View style={MoviesStyles.bottomContainer}>
-                        <Text style={MoviesStyles.title}>{this.props.movieData.original_title}</Text>
-                        <View style={MoviesStyles.ratingContainer} >
+                    <View style={Styles.bottomContainer}>
+                        <Text style={Styles.title}>{this.props.movieData.original_title}</Text>
+                        <View style={Styles.ratingContainer} >
                             <Button
-                                buttonStyle={MoviesStyles.trailerButtonStyle} textStyle={{ color: 'white', fontWeight: 'bold' }} title="TRAILER" />
+                                buttonStyle={Styles.trailerButtonStyle} textStyle={{ color: 'white', fontWeight: 'bold' }} title="TRAILER" />
                             <Star score={rating} />
                             <Text style={{ alignSelf: 'center', color: 'grey' }}>{"(" + this.props.movieData.vote_count + ")"}</Text>
                         </View>
-                        <Text style={MoviesStyles.description} >{this.props.movieData.overview}</Text>
+                        <Text style={Styles.description} >{this.props.movieData.overview}</Text>
                         <PairView
                             style={{ marginTop: 10 }}
                             valueStyle={{ color: '#7A838C', fontSize: 14, }}
                             title={"Production"}
                             // accumalting all the companies into one string
-                            value={this.props.movieData.production_companies.reduce((accum, current) => {
+                            value={this.props.movieData.production_companies && this.props.movieData.production_companies.reduce((accum, current) => {
                                 return (current.name + " " + accum);
                             }, "")} />
 
@@ -70,7 +79,7 @@ class MovieDetailScreen extends Component {
                             valueStyle={{ color: '#7A838C', fontSize: 14, }}
                             title={"Genre"}
                             // accumalting all the companies into one string
-                            value={this.props.movieData.genres.reduce((accum, current) => {
+                            value={this.props.movieData.genres && this.props.movieData.genres.reduce((accum, current) => {
                                 return (current.name + " " + accum);
                             }, "")} />
 
@@ -79,7 +88,7 @@ class MovieDetailScreen extends Component {
                             valueStyle={{ color: '#7A838C', fontSize: 14, }}
                             title={"Countries"}
                             // accumalting all the companies into one string
-                            value={this.props.movieData.production_countries.reduce((accum, current) => {
+                            value={this.props.movieData.production_countries && this.props.movieData.production_countries.reduce((accum, current) => {
                                 return (current.name + " " + accum);
                             }, "")} />
 
@@ -88,7 +97,7 @@ class MovieDetailScreen extends Component {
                             valueStyle={{ color: '#7A838C', fontSize: 14, }}
                             title={"Spoken Languages"}
                             // accumalting all the companies into one string
-                            value={this.props.movieData.spoken_languages.reduce((accum, current) => {
+                            value={this.props.movieData.spoken_languages && this.props.movieData.spoken_languages.reduce((accum, current) => {
                                 return (current.name + " " + accum);
                             }, "")} />
 
@@ -130,9 +139,61 @@ class MovieDetailScreen extends Component {
             </View>
         );
     }
+
+    showLoadingView() {
+
+        return (
+            <View style={[Styles.movieDetailContainer, {justifyContent: "center"}]}>
+                <ActivityIndicator size='large'/>
+            </View>
+        );
+    }
 }
 
 
+MovieDetailScreen.defaultProps = {
+    movieData: {},
+    error: null,
+    fetchingDetail: true
+}
+// "adult": false,
+// "backdrop_path": "https://via.placeholder.com/300",
+// "belongs_to_collection": null,
+// "budget": 0,
+// "genres": [],
+// "poster_path": "",
+// "homepage": "https://www.imdb.com/",
+// "original_language": "en",
+// "original_title": "Title",
+// "overview": "Description",
+// "popularity": 0,
+// "poster_path": "",
+// "production_companies": [{
+//     "id": 0,
+//     "name": ""
+// }],
+// "production_countries": [
+//     {
+//         "id": 0,
+//         "name": ""
+//     }
+// ],
+// "release_date": "",
+// "revenue": 0,
+// "runtime": 0,
+// "spoken_languages": [
+//     {
+//         "iso_639_1": "",
+//         "name": ""
+//     }],
+// "status": "",
+// "tagline": "",
+// "title": "",
+// "video": false,
+// "vote_average": 0,
+// "vote_count": 0
+// }
+// }
 
 
 
