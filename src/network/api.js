@@ -1,14 +1,18 @@
 import axios from "axios";
 
-const BASE_URL = 'https://api.themoviedb.org/3';
+import { BASE_URL } from '../shared/constants'
+
 const API_KEY = '9620b570ee4c767b505dd8d9b4e9b191';
+
+
+
 
 const api = axios.create({
   baseURL: BASE_URL
 });
 
 export const GET = (url, config = null) => {
-  
+
   return new Promise((resolve, reject) => {
 
     let finalUrl = BASE_URL + url;
