@@ -5,6 +5,8 @@ export default Styles = StyleSheet.create({
 
     container: {
         ...AppStyles.appContainer,
+    },
+    padding: {
         padding: 5
     },
     titleBar: {
@@ -13,5 +15,8 @@ export default Styles = StyleSheet.create({
         backgroundColor: '#454545',
         borderRadius: 10, padding: 10
     },
-
+    listStyles: {
+        backgroundColor: 'black', 
+        marginTop: 2
+    }
 });

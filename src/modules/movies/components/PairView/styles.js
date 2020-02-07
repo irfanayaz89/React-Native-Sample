@@ -11,8 +11,13 @@ const Styles = StyleSheet.create({
     valueStyle: {
         flex: 0.8,
         color: 'white',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        color: '#7A838C', 
+        fontSize: 14, 
     },
+    margin: {
+        marginTop: 10 
+    }
 })
 
 export default Styles

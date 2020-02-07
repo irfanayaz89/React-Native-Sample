@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
     View,
-    Text
+    Text,
+    SafeAreaView
 } from 'react-native';
 
 import { connect } from "react-redux";
@@ -10,7 +11,6 @@ import { getPopularMovies } from '../../actions';
 import MovieItem from '../../components/MovieItem/movieItem';
 import { FlatList } from 'react-native-gesture-handler';
 
-import AppStyles from '../../../../theme/styles'
 import Styles from './style'
 
 class MoviesScreen extends Component {
@@ -28,29 +28,20 @@ class MoviesScreen extends Component {
         this.props.getPopularMovies();
     }
 
-    componentDidUpdate() {
-
-        const { fetchingMovies, moviesList, error } = this.props;
-        console.log("FETCHING MOVIES:: " + fetchingMovies);
-        console.log("MOVIES:: " + moviesList);
-        console.log("ERROR:: " + error);
-    }
-
     render() {
 
         return (
-            <View style={[Styles.container]}>
-                <View style={[Styles.titleBar]} >
-                    <Text style={{ color: '#1F64E1', fontSize: 20, fontWeight: 'bold' }} >Tin</Text>
-                    <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>Movies</Text>
-                </View>
-                <FlatList style={{ flex: 1, backgroundColor: 'black', marginTop: 2 }}
+            <SafeAreaView style={[Styles.container, Styles.padding]}>
+                {/* <View style={[Styles.titleBar]} > */}
+                    <Text style={{ color: '#1F64E1', fontSize: 20, fontWeight: 'bold' }}>Tin<Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>Movies</Text></Text>
+                {/* </SafeAreaView> */}
+                <FlatList style={[Styles.container, Styles.listStyles]}
                     data={this.props.moviesList}
                     renderItem={(item) => this.getItem(item)}
                     numColumns={2}>
 
                 </FlatList>
-            </View>
+            </SafeAreaView>
         );
     }
 
@@ -63,7 +54,6 @@ class MoviesScreen extends Component {
     getItem(item) {
         return (
             <MovieItem item={item} navigate={this.navigateToDetailView} />
-            // <Text style={{ color: 'white' }} >Hello</Text>
         )
     }
 }

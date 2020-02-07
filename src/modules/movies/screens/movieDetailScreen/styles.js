@@ -6,10 +6,12 @@ import AppStyles from '../../../../theme/styles'
 export default Styles = StyleSheet.create({
 
 
-    movieDetailContainer: {
+    container: {
         ...AppStyles.appContainer
     },
-
+    centerChildren: {
+        ...AppStyles.centerChildren
+    },
     trailerButtonStyle: {
         borderRadius: 10,
         backgroundColor: '#6B7380',
@@ -27,12 +29,11 @@ export default Styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginTop: 15
     },
-    image: {
+    coverImage: {
         height: height * 0.40,
         width: '100%',
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
-
     },
     title: {
         fontWeight: 'bold',
@@ -45,4 +46,12 @@ export default Styles = StyleSheet.create({
         fontSize: 16,
         marginTop: 15,
     },
+    btnTxtStyle: {
+        color: 'white', 
+        fontWeight: 'bold'
+    },
+    voteCount: { 
+        alignSelf: 'center', 
+        color: 'grey' 
+    }
 });
