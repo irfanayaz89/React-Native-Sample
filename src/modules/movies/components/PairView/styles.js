@@ -18,6 +18,6 @@ const Styles = StyleSheet.create({
     margin: {
         marginTop: 10 
     }
-})
+});
 
-export default Styles
+export default Styles;

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Text, View, TouchableHighlight } from 'react-native';
 
-const Button = (props) => {
+const Button = ((props) => {
     
     return (
         <TouchableHighlight
@@ -12,7 +12,7 @@ const Button = (props) => {
 
         </TouchableHighlight>
     )
-}
+});
 
 
 export default Button

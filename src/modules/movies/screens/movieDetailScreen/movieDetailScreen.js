@@ -38,7 +38,7 @@ class MovieDetailScreen extends Component {
             uri: IMAGE_BASE_URL + movieData.poster_path
         }
 
-        let rating = (movieData.vote_average / 10) * 5
+        let rating = (movieData.vote_average / 10) * 5;
         
         return (
             <View style={Styles.container}>
@@ -48,7 +48,7 @@ class MovieDetailScreen extends Component {
                 <ScrollView>
                     <View style={Styles.bottomContainer}>
                         <Text style={Styles.title}>{movieData.original_title}</Text>
-                        <View style={Styles.ratingContainer} >
+                        <View style={Styles.ratingContainer}>
                             <Button
                                 buttonStyle={Styles.trailerButtonStyle} textStyle={Styles.btnTxtStyle} title="TRAILER" />
                             <Star score={rating} />

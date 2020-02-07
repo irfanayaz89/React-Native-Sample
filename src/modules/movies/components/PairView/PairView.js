@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import Styles from './styles'
+import Styles from './styles';
 
 const PairView = (props) => {
 
@@ -9,7 +9,7 @@ const PairView = (props) => {
                 <Text style={[Styles.keyStyle, props.titleStyle]}>{props.title}</Text>
                 <Text style={[Styles.valueStyle, props.valueStyle]} >{props.value}</Text>
             </View>
-        )
+        );
 }
 
-export default PairView
+export default PairView;

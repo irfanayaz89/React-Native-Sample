@@ -13,10 +13,9 @@ export default Styles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         backgroundColor: '#454545',
-        borderRadius: 10, padding: 10
+        padding: 10
     },
     listStyles: {
-        backgroundColor: 'black', 
-        marginTop: 2
+        backgroundColor: 'black',
     }
 });

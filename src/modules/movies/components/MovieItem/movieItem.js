@@ -9,28 +9,26 @@ import Styles from './style'
 
 class MovieItem extends Component {
 
-
     constructor(props) {
         super(props)
         this.onItemPress = this.onItemPress.bind(this)
     }
 
-
     onItemPress() {
         this.props.navigate(this.props.item.index)
     }
 
-
     render() {
 
-        let height = this.getItemHeght(this.props.item.index)
+        const { item } = this.props;
+
+        let height = this.getItemHeight(item.index)
 
         let imgUrl = {
-            uri: IMAGE_BASE_URL + this.props.item.item.backdrop_path
+            uri: (item.item != null && item.item.backdrop_path != null) ? IMAGE_BASE_URL + item.item.backdrop_path : "https://placeholder.com/"
         }
 
-        let vote_average = this.props.item.item.vote_average
-
+        let vote_average = item.item.vote_average
 
         return (
 
@@ -50,7 +48,7 @@ class MovieItem extends Component {
     }
 
 
-    getItemHeght = (index) => {
+    getItemHeight = (index) => {
         switch (index % 3) {
             case 0:
                 return 300;
@@ -65,10 +63,11 @@ class MovieItem extends Component {
 
 }
 
-MovieItem.defaultProps = {
-    imgUrl: "https://placeholder.com/",
-    original_title: "Movie Title"
-
-}
+// MovieItem.defaultProps = {
+//     item: {
+//         imgUrl: "https://placeholder.com/",
+//         original_title: "Movie Title"
+//     }
+// }
 
 export default MovieItem;

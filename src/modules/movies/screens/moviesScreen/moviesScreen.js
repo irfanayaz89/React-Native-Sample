@@ -32,9 +32,10 @@ class MoviesScreen extends Component {
 
         return (
             <SafeAreaView style={[Styles.container, Styles.padding]}>
-                {/* <View style={[Styles.titleBar]} > */}
-                    <Text style={{ color: '#1F64E1', fontSize: 20, fontWeight: 'bold' }}>Tin<Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>Movies</Text></Text>
-                {/* </SafeAreaView> */}
+                <View style={[Styles.titleBar]} >
+                    <Text style={{ color: '#1F64E1', fontSize: 20, fontWeight: 'bold' }}>Tin</Text>
+                    <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>Movies</Text>
+                </View>
                 <FlatList style={[Styles.container, Styles.listStyles]}
                     data={this.props.moviesList}
                     renderItem={(item) => this.getItem(item)}
