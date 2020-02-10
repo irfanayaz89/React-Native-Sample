@@ -6,6 +6,8 @@ import RatingWithText from '../RatingWithTextView/ratingWithTextView'
 import { IMAGE_BASE_URL } from '../../../../shared/constants'
 
 import Styles from './style'
+import PropTypes from 'prop-types';
+
 
 class MovieItem extends Component {
 
@@ -15,20 +17,21 @@ class MovieItem extends Component {
     }
 
     onItemPress() {
-        this.props.navigate(this.props.item.index)
+        this.props.navigate(this.props.index)
     }
 
     render() {
 
-        const { item } = this.props;
+        const { item, index } = this.props;
 
-        let height = this.getItemHeight(item.index)
+        let height = this.getItemHeight(index)
 
         let imgUrl = {
-            uri: (item.item != null && item.item.backdrop_path != null) ? IMAGE_BASE_URL + item.item.backdrop_path : "https://placeholder.com/"
+            uri: (item != null) ? IMAGE_BASE_URL + item.backdrop_path : "https://placeholder.com/"
         }
 
-        let vote_average = item.item.vote_average
+        let itemName = item != null ? item.original_title : "Movie Name"
+        let vote_average = item != null ? item.vote_average : 0
 
         return (
 
@@ -39,7 +42,7 @@ class MovieItem extends Component {
                         <Image style={Styles.imageStyle} source={imgUrl} resizeMode='cover' />
                         <View style={Styles.innerView} >
                             <RatingWithText style={Styles.ratingStyle} vote_average={vote_average} />
-                            <Text style={Styles.movieNameStyle} >{this.props.item.item.original_title}</Text>
+                            <Text style={Styles.movieNameStyle} >{itemName}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -63,11 +66,16 @@ class MovieItem extends Component {
 
 }
 
-// MovieItem.defaultProps = {
-//     item: {
-//         imgUrl: "https://placeholder.com/",
-//         original_title: "Movie Title"
-//     }
-// }
+MovieItem.defaultProps = {
+    item: {
+        imgUrl: "https://placeholder.com/",
+        original_title: "Movie Title"
+    }, index: 0
+}
+
+MovieItem.propTypes = {
+    item: PropTypes.object.isRequired,
+    index: PropTypes.number.isRequired
+}
 
 export default MovieItem;

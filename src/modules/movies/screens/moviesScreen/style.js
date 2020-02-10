@@ -10,12 +10,17 @@ export default Styles = StyleSheet.create({
         padding: 5
     },
     titleBar: {
-        flexDirection: 'row',
+        // flexDirection: 'row',
         width: '100%',
         backgroundColor: '#454545',
         padding: 10
     },
     listStyles: {
         backgroundColor: 'black',
-    }
+    },
+    movieText: {
+        fontSize: 20, 
+        fontWeight: 'bold'
+    },
+
 });

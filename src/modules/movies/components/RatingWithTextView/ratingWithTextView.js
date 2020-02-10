@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 import Styles from './style';
+import PropTypes from 'prop-types';
 
 const RatingWithText = (props) => {
 
@@ -13,6 +14,13 @@ const RatingWithText = (props) => {
         );
 }
 
+RatingWithText.defaultProps = {
+    vote_average: 0,
+}
+
+RatingWithText.propTypes = {
+    vote_average: PropTypes.number.isRequired
+}
 
 export default RatingWithText;
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, TouchableHighlight } from 'react-native';
+import PropTypes from 'prop-types';
 
 const Button = ((props) => {
     
@@ -13,6 +14,14 @@ const Button = ((props) => {
         </TouchableHighlight>
     )
 });
+
+Button.defaultProps = {
+    title: '',
+}
+
+Button.propTypes = {
+    title: PropTypes.string.isRequired
+}
 
 
 export default Button

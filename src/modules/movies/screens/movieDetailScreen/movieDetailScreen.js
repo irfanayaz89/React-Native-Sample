@@ -18,6 +18,8 @@ import PairView from '../../components/PairView/PairView';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import Styles from "./styles";
+import PropTypes from 'prop-types';
+
 
 class MovieDetailScreen extends Component {
 
@@ -87,17 +89,17 @@ class MovieDetailScreen extends Component {
                         <PairView
                             title="Budget"
                             // accumalting all the companies into one string
-                            value={movieData.budget} />
+                            value={movieData.budget + ""} />
 
                         <PairView
                             title="Revenue"
                             // accumalting all the companies into one string
-                            value={movieData.revenue} />
+                            value={movieData.revenue + ""} />
 
                         <PairView
                             title="Release Date"
                             // accumalting all the companies into one string
-                            value={movieData.release_date} />
+                            value={movieData.release_date + ""} />
 
                         <PairView
                             title="Run Time"
@@ -125,6 +127,12 @@ MovieDetailScreen.defaultProps = {
     movieData: {},
     error: null,
     fetchingDetail: true
+}
+
+MovieDetailScreen.propTypes = {
+    movieData: PropTypes.object.isRequired,
+    error: PropTypes.object,
+    fetchingDetail: PropTypes.bool
 }
 
 function mapStateToProps(state) {

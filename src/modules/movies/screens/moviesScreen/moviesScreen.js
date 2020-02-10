@@ -33,14 +33,12 @@ class MoviesScreen extends Component {
         return (
             <SafeAreaView style={[Styles.container, Styles.padding]}>
                 <View style={[Styles.titleBar]} >
-                    <Text style={{ color: '#1F64E1', fontSize: 20, fontWeight: 'bold' }}>Tin</Text>
-                    <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>Movies</Text>
+                    <Text style={[{ color: '#1F64E1'}, Styles.movieText]}>Tin<Text style={{ color: 'white' }}>Movies</Text></Text>
                 </View>
                 <FlatList style={[Styles.container, Styles.listStyles]}
                     data={this.props.moviesList}
-                    renderItem={(item) => this.getItem(item)}
+                    renderItem={({item, index}) => this.getItem(item, index)}
                     numColumns={2}>
-
                 </FlatList>
             </SafeAreaView>
         );
@@ -52,9 +50,9 @@ class MoviesScreen extends Component {
         })
     }
 
-    getItem(item) {
+    getItem(item, index) {
         return (
-            <MovieItem item={item} navigate={this.navigateToDetailView} />
+            <MovieItem item={item} index={index} navigate={this.navigateToDetailView} />
         )
     }
 }
