@@ -23,7 +23,7 @@
     "@babel/core": "^7.7.7",
     "@babel/runtime": "^7.7.7",
     "@react-native-community/eslint-config": "^0.0.6",
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "babel-jest": "^24.9.0",
     "eslint": "^6.8.0",
     "ios": "0.0.1",
